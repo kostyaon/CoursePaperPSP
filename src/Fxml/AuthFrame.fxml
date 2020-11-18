@@ -20,11 +20,11 @@
             <Font name="Marlett" size="23.74" />
          </font>
       </Label>
-      <TextField fx:id="TNickname" layoutX="57.0" layoutY="252.0" prefHeight="25.0" prefWidth="211.0" text="Nickname">
+      <TextField fx:id="TNickname" layoutX="57.0" layoutY="252.0" prefHeight="25.0" prefWidth="211.0" promptText="Nickname">
          <font>
             <Font size="16.0" />
          </font></TextField>
-      <TextField fx:id="TPassword" layoutX="58.0" layoutY="306.0" prefHeight="0.0" prefWidth="211.0" text="Password">
+      <TextField fx:id="TPassword" layoutX="58.0" layoutY="306.0" prefHeight="0.0" prefWidth="211.0" promptText="Password">
          <font>
             <Font size="16.0" />
          </font>

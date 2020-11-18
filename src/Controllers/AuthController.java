@@ -8,7 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -31,6 +33,7 @@ public class AuthController {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("../Fxml/SignUpFrame.fxml"));
             Stage signStage = new Stage();
+            signStage.initModality(Modality.APPLICATION_MODAL);
             signStage.setTitle("Hello World");
             signStage.setScene(new Scene(root, 325, 452));
             //signStage.initStyle(StageStyle.TRANSPARENT);

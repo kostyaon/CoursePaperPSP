@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class MainFrameView extends Application {
+    private double xOffset;
+    private double yOffset;
+
     @Override
     public void start(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../Fxml/MainFrame.fxml"));
@@ -19,10 +22,26 @@ public class MainFrameView extends Application {
         Scene scene = new Scene(root, 792, 539);
         scene.setFill(Color.TRANSPARENT);
 
+        scene.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                xOffset = stage.getX() - mouseEvent.getScreenX();
+                yOffset = stage.getY() - mouseEvent.getScreenY();
+            }
+        });
+
+        scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                stage.setX(mouseEvent.getScreenX() + xOffset);
+                stage.setY(mouseEvent.getScreenY() + yOffset);
+            }
+        });
+
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Hello World");
         stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
         stage.show();
     }
 

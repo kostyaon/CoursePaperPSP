@@ -1,15 +1,20 @@
 package View;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class SignUpView extends Application {
+    private double xOffset;
+    private double yOffset;
+
     @Override
     public void start(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../Fxml/SignUpFrame.fxml"));
@@ -17,10 +22,27 @@ public class SignUpView extends Application {
         Scene scene = new Scene(root, 325, 452);
         scene.setFill(Color.TRANSPARENT);
 
+        scene.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                xOffset = stage.getX() - mouseEvent.getScreenX();
+                yOffset = stage.getY() - mouseEvent.getScreenY();
+            }
+        });
+
+        scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                stage.setX(mouseEvent.getScreenX() + xOffset);
+                stage.setY(mouseEvent.getScreenY() + yOffset);
+            }
+        });
+
+
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Hello World");
-        //stage.initStyle(StageStyle.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
         stage.show();
     }
 

@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="325.0" style="-fx-background-color: #292929; -fx-background-radius: 25; -fx-background-insets: 2;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AuthController">
+<Pane layoutX="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="325.0" style="-fx-background-color: #292929; -fx-background-radius: 25; -fx-background-insets: 2;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AuthController">
    <children>
       <Circle fill="#ff5c5c" layoutX="162.0" layoutY="88.0" radius="56.0" stroke="BLACK" strokeType="INSIDE" />
       <Label layoutX="133.0" layoutY="162.0" text="Hello," textFill="WHITE">

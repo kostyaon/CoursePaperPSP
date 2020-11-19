@@ -1,5 +1,6 @@
 package Controllers;
 
+import View.SignUpView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -31,14 +33,11 @@ public class AuthController {
     @FXML
     void signUpFrame(MouseEvent event) {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("../Fxml/SignUpFrame.fxml"));
             Stage signStage = new Stage();
-            signStage.initModality(Modality.APPLICATION_MODAL);
-            signStage.setTitle("Hello World");
-            signStage.setScene(new Scene(root, 325, 452));
-            //signStage.initStyle(StageStyle.TRANSPARENT);
-            signStage.show();
-        }catch (IOException e){
+            SignUpView signUpView = new SignUpView();
+            signUpView.start(signStage);
+        }catch (Exception e){
+            System.out.println("Cannot open");
             e.printStackTrace();
         }
     }

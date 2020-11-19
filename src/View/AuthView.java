@@ -13,12 +13,12 @@ public class AuthView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../Fxml/AuthFrame.fxml"));
-        primaryStage.setTitle("Hello World");
 
         Scene scene = new Scene(root, 325, 493);
         scene.setFill(Color.TRANSPARENT);
-        primaryStage.setScene(scene);
 
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Hello World");
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
     }

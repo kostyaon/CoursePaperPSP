@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="539.0" prefWidth="792.0" style="-fx-background-color: #292929; -fx-background-radius: 20; -fx-background-insets: 2;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainFrameController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <children>
+      <Pane layoutX="195.0" layoutY="36.0" prefHeight="97.0" prefWidth="578.0">
+         <children>
+            <Label fx:id="TQuest" text="Question 1: How much do you earn?" textFill="WHITE">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane prefHeight="539.0" prefWidth="178.0" style="-fx-background-color: #292929; -fx-background-radius: 0; -fx-background-insets: 2; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, .75), 20, 0.19, 0, 6);">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#575757" height="11.0" layoutX="176.0" layoutY="151.0" stroke="BLACK" strokeType="INSIDE" width="613.0" />
+            <Circle fx:id="IMIconUser" fill="#ff5c5c" layoutX="92.0" layoutY="57.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" style="-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.2), 100, 0.1, 0, 6);" />
+            <Label fx:id="TNickname" layoutX="61.0" layoutY="101.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, .75), 10, 0.3, 0, 1);" text="Nickname" textFill="WHITE">
+               <font>
+                  <Font name="Marlett" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="TRating" layoutX="61.0" layoutY="122.0" opacity="0.29" text="Rating: 94.7%" textFill="WHITE">
+               <font>
+                  <Font name="Marlett" size="10.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#575757" height="11.0" layoutX="4.0" layoutY="151.0" stroke="BLACK" strokeType="INSIDE" width="172.0" />
+            <SplitMenuButton fx:id="MCourseName" layoutX="19.0" layoutY="249.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="147.0" style="-fx-background-color: #d7c9c9;" text="Course name">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </SplitMenuButton>
+            <SplitMenuButton fx:id="MLevel" layoutX="19.0" layoutY="300.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="147.0" style="-fx-background-color: #d7c9c9;" text="Level">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </SplitMenuButton>
+            <SplitMenuButton fx:id="MQuestNumber" layoutX="19.0" layoutY="353.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="147.0" style="-fx-background-color: #d7c9c9;" text="Number of questions">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </SplitMenuButton>
+            <Button fx:id="BStart" layoutX="50.0" layoutY="401.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="77.0" style="-fx-background-color: #38b98c;" text="Start" textFill="WHITE" />
+            <Label layoutX="19.0" layoutY="209.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, .75), 10, 0.3, 0, 1);" text="Test settings:" textFill="WHITE">
+               <font>
+                  <Font name="Marlett" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="501.0" opacity="0.29" text="© 2020 TestIT. All rights reserved." textFill="WHITE">
+               <font>
+                  <Font name="Marlett" size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button fx:id="BNext" layoutX="380.0" layoutY="430.0" mnemonicParsing="false" prefHeight="8.0" prefWidth="132.0" style="-fx-background-color: #38b98c;" text="Next" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <ProgressBar fx:id="ProgressBar" layoutX="177.0" layoutY="152.0" opacity="0.23" prefHeight="8.0" prefWidth="611.0" progress="0.55" />
+      <RadioButton fx:id="RBAnswer1" layoutX="244.0" layoutY="227.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="531.0" text="Starting and consistently doing or creating something " textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="RBAnswer2" layoutX="245.0" layoutY="287.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="531.0" text="Extracurricular outlets don’t just boost your sanity " textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="RBAnswer3" layoutX="246.0" layoutY="346.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="531.0" text="You could even make money from your passion project" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </RadioButton>
+   </children>
+</AnchorPane>

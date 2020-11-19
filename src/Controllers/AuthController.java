@@ -1,6 +1,8 @@
 package Controllers;
 
+import View.MainFrameView;
 import View.SignUpView;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,9 +39,20 @@ public class AuthController {
             SignUpView signUpView = new SignUpView();
             signUpView.start(signStage);
         }catch (Exception e){
-            System.out.println("Cannot open");
+            System.out.println("Cannot open SignUp form! Exception: " + e.getLocalizedMessage());
             e.printStackTrace();
         }
     }
 
+    @FXML
+    void logInFrame(ActionEvent event) {
+        try{
+            Stage loginStage = new Stage();
+            MainFrameView mainFrameView = new MainFrameView();
+            mainFrameView.start(loginStage);
+        }catch (Exception e){
+            System.out.println("Cannot open MainFrame form! Exception: " + e.getLocalizedMessage());
+            e.printStackTrace();
+        }
+    }
 }

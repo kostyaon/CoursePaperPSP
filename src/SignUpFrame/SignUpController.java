@@ -1,4 +1,4 @@
-package Controllers;
+package SignUpFrame;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

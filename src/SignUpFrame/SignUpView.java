@@ -1,4 +1,4 @@
-package View;
+package SignUpFrame;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -11,15 +11,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class MainFrameView extends Application {
+public class SignUpView extends Application {
     private double xOffset;
     private double yOffset;
 
     @Override
     public void start(Stage stage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../Fxml/MainFrame.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("SignUpFrame.fxml"));
 
-        Scene scene = new Scene(root, 792, 539);
+        Scene scene = new Scene(root, 325, 452);
         scene.setFill(Color.TRANSPARENT);
 
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -37,6 +37,7 @@ public class MainFrameView extends Application {
                 stage.setY(mouseEvent.getScreenY() + yOffset);
             }
         });
+
 
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);

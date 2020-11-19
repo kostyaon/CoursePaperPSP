@@ -1,4 +1,4 @@
-package View;
+package AuthFrame;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -7,19 +7,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class SignUpView extends Application {
+public class AuthView extends Application {
     private double xOffset;
     private double yOffset;
 
     @Override
     public void start(Stage stage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../Fxml/SignUpFrame.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AuthFrame.fxml"));
 
-        Scene scene = new Scene(root, 325, 452);
+        Scene scene = new Scene(root, 325, 493);
         scene.setFill(Color.TRANSPARENT);
 
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -40,11 +39,11 @@ public class SignUpView extends Application {
 
 
         stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
         stage.show();
     }
+
 
     public static void main(String[] args) {
         launch(args);

@@ -18,9 +18,9 @@
             <Font name="Marlett" size="25.0" />
          </font>
       </Text>
-      <TextField fx:id="TName" layoutX="59.0" layoutY="168.0" prefHeight="25.0" prefWidth="207.0" promptText="Name" />
-      <TextField fx:id="TSurname" layoutX="59.0" layoutY="210.0" prefHeight="25.0" prefWidth="207.0" promptText="Surname" />
-      <TextField fx:id="TNickname" layoutX="59.0" layoutY="252.0" prefHeight="25.0" prefWidth="207.0" promptText="Nickname" />
+      <TextField fx:id="TNickname" layoutX="59.0" layoutY="168.0" prefHeight="25.0" prefWidth="207.0" promptText="Nickname" />
+      <TextField fx:id="TSpecialization" layoutX="59.0" layoutY="210.0" prefHeight="25.0" prefWidth="207.0" promptText="Specialization" />
+      <TextField fx:id="TCountry" layoutX="59.0" layoutY="252.0" prefHeight="25.0" prefWidth="207.0" promptText="Country" />
       <TextField fx:id="TPassword" layoutX="59.0" layoutY="293.0" prefHeight="25.0" prefWidth="207.0" promptText="Password" />
       <Button fx:id="BSignUp" layoutX="114.0" layoutY="361.0" mnemonicParsing="false" onAction="#signUp" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #34af84;" text="SignUp" textFill="WHITE">
          <font>

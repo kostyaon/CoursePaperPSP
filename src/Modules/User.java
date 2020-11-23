@@ -1,20 +1,25 @@
 package Modules;
 
+import javax.lang.model.type.NullType;
+import java.util.Objects;
+
 public class User {
     private String nickname;
     private String specialization;
     private String country;
 
     public User(String nickname, String specialization, String country){
-        this.country = country;
+        if (country.equals("")){
+            this.country = "UNKNOWN";
+        }
+        else{
+            this.country = country;
+        }
+
         this.nickname = nickname;
         this.specialization = specialization;
     }
 
-    public User(String nickname, String specialization){
-        this.specialization = specialization;
-        this.nickname = nickname;
-    }
 
     public void setCountry(String country) {
         this.country = country;
@@ -38,5 +43,12 @@ public class User {
 
     public String getSpecialization() {
         return specialization;
+    }
+
+    @Override
+    public String toString() {
+        String str;
+        str = "Nickname: " + nickname + "\nSpecialization: " + specialization + "\nCountry: " + country;
+        return str;
     }
 }

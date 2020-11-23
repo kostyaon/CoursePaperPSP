@@ -1,8 +1,8 @@
 package AuthFrame;
 
 import MainFrame.MainFrameView;
-import Modules.PrivateData;
-import Modules.User;
+import Models.PrivateData;
+import Models.User;
 import SignUpFrame.SignUpView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

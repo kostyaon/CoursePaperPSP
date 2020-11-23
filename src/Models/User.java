@@ -1,7 +1,4 @@
-package Modules;
-
-import javax.lang.model.type.NullType;
-import java.util.Objects;
+package Models;
 
 public class User {
     private String nickname;

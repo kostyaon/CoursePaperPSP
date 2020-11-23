@@ -1,7 +1,7 @@
 package SignUpFrame;
 
-import Modules.PrivateData;
-import Modules.User;
+import Models.PrivateData;
+import Models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

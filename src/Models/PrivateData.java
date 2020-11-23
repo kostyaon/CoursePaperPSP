@@ -1,4 +1,4 @@
-package Modules;
+package Models;
 
 public class PrivateData {
     private String password;

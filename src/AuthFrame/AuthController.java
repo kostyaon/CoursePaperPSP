@@ -16,8 +16,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class AuthController {
-    private User user;
-    private PrivateData authData;
 
     @FXML
     private TextField TNickname;
@@ -54,6 +52,10 @@ public class AuthController {
                 Stage loginStage = new Stage();
                 MainFrameView mainFrameView = new MainFrameView();
                 mainFrameView.start(loginStage);
+                
+               //Close AuthView
+                Stage stage = (Stage) BLogIn.getScene().getWindow();
+                stage.close();
             }
             else{
                 throw new Exception("Invalid nickname or password" );

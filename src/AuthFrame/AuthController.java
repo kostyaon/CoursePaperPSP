@@ -1,5 +1,6 @@
 package AuthFrame;
 
+import Client.Client;
 import MainFrame.MainFrameView;
 import Models.PrivateData;
 import Models.User;
@@ -11,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AuthController {
     private User user;
@@ -41,24 +44,24 @@ public class AuthController {
     }
 
     @FXML
-    void logInFrame(ActionEvent event) {
-        //Fake Data
-        user = new User("Channy33", "GameDev", "Belarus");
-        authData = new PrivateData("Hello");
+    void logInFrame(ActionEvent event) throws IOException {
 
-        try{
-            //Authorization
-            if (user.getNickname().equals(TNickname.getText()) && authData.getPassword().equals(TPassword.getText())){
+       //Send to the server TNickname and found the ID
+        try {
+            Client client = new Client(); //TODO: MAKE THIS CLIENT TO WORK FOR ONE SESSION
+            String access = client.auth(TNickname.getText(), TPassword.getText());
+            if (access.equalsIgnoreCase("Access")){
                 Stage loginStage = new Stage();
                 MainFrameView mainFrameView = new MainFrameView();
                 mainFrameView.start(loginStage);
             }
             else{
-                throw new Exception("Invalid nickname or password");
+                throw new Exception("Invalid nickname or password" );
             }
         }catch (Exception e){
             System.out.println("Exception: " + e.getLocalizedMessage());
             e.printStackTrace();
         }
+
     }
 }

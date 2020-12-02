@@ -46,7 +46,7 @@ public class SignUpController {
             //Check the data
             System.out.println(user.toString());
 
-            //Send data to the server
+            //TODO:Send data to the server
             //......
             //......
         }catch(Exception e){

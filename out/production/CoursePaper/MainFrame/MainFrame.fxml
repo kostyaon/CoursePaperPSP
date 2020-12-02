@@ -69,7 +69,7 @@
                   <Font size="11.0" />
                </font>
             </SplitMenuButton>
-            <Button fx:id="BStart" layoutX="50.0" layoutY="401.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="77.0" style="-fx-background-color: #38b98c;" text="Start" textFill="WHITE" />
+            <Button fx:id="BStart" layoutX="50.0" layoutY="401.0" mnemonicParsing="false" onAction="#startTest" prefHeight="16.0" prefWidth="77.0" style="-fx-background-color: #38b98c;" text="Start" textFill="WHITE" />
             <Label layoutX="19.0" layoutY="209.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, .75), 10, 0.3, 0, 1);" text="Test settings:" textFill="WHITE">
                <font>
                   <Font name="Marlett" size="16.0" />

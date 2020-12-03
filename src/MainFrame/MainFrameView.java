@@ -15,6 +15,7 @@ public class MainFrameView extends Application {
     private double xOffset;
     private double yOffset;
 
+
     @Override
     public void start(Stage stage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MainFrame.fxml"));

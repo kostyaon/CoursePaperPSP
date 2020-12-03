@@ -19,6 +19,20 @@ public class Client  {
         }
     }
 
+    public float countSumRate(String nickname){
+        float rating = 0;
+        try{
+            //Send a nickname
+            outObj.writeObject(nickname);
+            outObj.flush();
+
+            //Get a summary rating
+            rating = (float) inObj.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return rating;
+    }
 
     public String auth (String nickname, String password) {
         String received = null;

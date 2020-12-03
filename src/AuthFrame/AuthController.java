@@ -46,9 +46,17 @@ public class AuthController {
 
        //Send to the server TNickname and found the ID
         try {
-            Client client = new Client(); //TODO: MAKE THIS CLIENT TO WORK FOR ONE SESSION
+            //TODO: MAKE THIS CLIENT TO WORK FOR ONE SESSION
+            Client client = new Client();
             String access = client.auth(TNickname.getText(), TPassword.getText());
             if (access.equalsIgnoreCase("Access")){
+                //Count Summary Rating
+                float sumRating = client.countSumRate(TNickname.getText());
+                System.out.println("CLIENT >> SUM RATE = " + sumRating);
+                //TODO: Viewing of the rating in a MainFrame
+
+
+                //Add rating to parameters
                 Stage loginStage = new Stage();
                 MainFrameView mainFrameView = new MainFrameView();
                 mainFrameView.start(loginStage);

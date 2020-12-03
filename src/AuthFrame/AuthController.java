@@ -46,13 +46,13 @@ public class AuthController {
 
        //Send to the server TNickname and found the ID
         try {
-            Client client = new Client(); //TODO: MAKE THIS CLIENT TO WORK FOR ONE SESSION
+            Client client = new Client(0); //TODO: MAKE THIS CLIENT TO WORK FOR ONE SESSION
             String access = client.auth(TNickname.getText(), TPassword.getText());
             if (access.equalsIgnoreCase("Access")){
                 Stage loginStage = new Stage();
                 MainFrameView mainFrameView = new MainFrameView();
                 mainFrameView.start(loginStage);
-                
+
                //Close AuthView
                 Stage stage = (Stage) BLogIn.getScene().getWindow();
                 stage.close();

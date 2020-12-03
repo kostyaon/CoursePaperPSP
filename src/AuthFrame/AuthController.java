@@ -46,7 +46,7 @@ public class AuthController {
 
        //Send to the server TNickname and found the ID
         try {
-            Client client = new Client(0); //TODO: MAKE THIS CLIENT TO WORK FOR ONE SESSION
+            Client client = new Client(); //TODO: MAKE THIS CLIENT TO WORK FOR ONE SESSION
             String access = client.auth(TNickname.getText(), TPassword.getText());
             if (access.equalsIgnoreCase("Access")){
                 Stage loginStage = new Stage();
@@ -64,6 +64,5 @@ public class AuthController {
             System.out.println("Exception: " + e.getLocalizedMessage());
             e.printStackTrace();
         }
-
     }
 }

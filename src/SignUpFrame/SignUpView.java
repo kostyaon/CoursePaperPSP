@@ -40,7 +40,7 @@ public class SignUpView extends Application {
 
 
         stage.setScene(scene);
-        //stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
         stage.show();

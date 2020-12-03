@@ -43,7 +43,7 @@ public class SignUpController {
                 throw new Exception("Specialization is empty!");
             }
 
-            Client client = new Client(1);
+            Client client = new Client();
             User user = new User(TNickname.getText(), TSpecialization.getText(), TCountry.getText());
             String success = client.signUp(user, TPassword.getText());
             if (success.equalsIgnoreCase("Success")) {
@@ -54,22 +54,6 @@ public class SignUpController {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-           /* //Add data to User model
-            User user = new User(TNickname.getText(),TSpecialization.getText(), TCountry.getText());
-            PrivateData signData = new PrivateData(TPassword.getText());
-
-
-            //Check the data
-            System.out.println(user.toString());
-
-            //TODO:Send data to the server
-            //......
-            //......
-        }catch(Exception e){
-            System.out.println("Exception: " + e.getLocalizedMessage());
-            e.printStackTrace();
-        }*/
     }
 
 }

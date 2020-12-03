@@ -1,5 +1,7 @@
 package MainFrame;
 
+import Client.Client;
+import Models.Answer;
 import Models.Question;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,13 +21,6 @@ import java.util.Random;
 
 public class MainFrameController {
     private Question question;
-
-    private List<Question> getList(){
-        //TODO: Receive a list from a server
-        //All, that we need -> strings (our questions)
-        //Return String list
-        return null;
-    }
 
     @FXML
     private Label TQuest;
@@ -73,11 +68,17 @@ public class MainFrameController {
 
     @FXML
     void startTest(ActionEvent event) {
-        //TODO:Question List, that we receive from server
+        Client client = new Client();
+        //TODO: add not 3 but choosen by user id
+        //Get questionList
+        List<Question> questionList = client.getQuestList("Java", 0, 3);
 
-        //Set Label TQuest for the first question
-
-
+        //For each question get AnswerList
+        //In a loop (getAnswer -> view -> next quest and answer load -> view)
+        List<Answer> answerList = client.getAnswer(questionList, 0);
+        for(int i=0; i<3; i++){
+            System.out.println("CLIENT >> ANSWER " + i + ":" + answerList.get(i).getAnswer());
+        }
     }
 
 }

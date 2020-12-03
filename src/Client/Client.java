@@ -1,9 +1,12 @@
 package Client;
 
+import Models.Answer;
+import Models.Question;
 import Models.User;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.List;
 
 public class Client  {
     private Socket socket;
@@ -82,4 +85,53 @@ public class Client  {
          return received;
     }
 
+    public List<Answer> getAnswer(List<Question> questionList, int index){
+        List<Answer> answerList = null;
+        try{
+            //Choose functionality
+            outObj.writeObject("Answer");
+            outObj.flush();
+
+            //Send our questList
+            outObj.writeObject(questionList);
+            outObj.flush();
+
+            //Send index question
+            outObj.writeObject(index);
+            outObj.flush();
+
+            //Receive answerList for one question
+            answerList = (List<Answer>) inObj.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return answerList;
+    }
+
+    public List<Question> getQuestList(String theme, int level, int numberOfQuest){
+        List<Question> questions = null;
+        try{
+            //TODO: We can send all this as one object
+            //Choose functionality
+            outObj.writeObject("StartTest");
+            outObj.flush();
+
+            //Send topic, level, number of quest
+            outObj.writeObject(theme);
+            outObj.flush();
+
+            outObj.writeObject(level);
+            outObj.flush();
+
+            outObj.writeObject(numberOfQuest);
+            outObj.flush();
+
+            //Get a list of question
+            inObj = new ObjectInputStream(socket.getInputStream());
+            questions =  (List<Question>) inObj.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return questions;
+    }
 }

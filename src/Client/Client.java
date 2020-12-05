@@ -158,7 +158,7 @@ public class Client  {
         return success;
     }
 
-    public User getUser(){
+    public void getUser(){
         try{
             outObj.writeObject("Get User");
             outObj.flush();
@@ -168,5 +168,6 @@ public class Client  {
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 }

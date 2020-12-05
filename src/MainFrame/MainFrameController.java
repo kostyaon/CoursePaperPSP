@@ -91,7 +91,7 @@ public class MainFrameController {
         rating.setRating(testRating);
 
         //Insert rating in DB
-        Client client = new Client();
+        Client client = Client.getInstance();
 
 
         //Update final rating
@@ -104,7 +104,7 @@ public class MainFrameController {
         countRating();
         index++;
 
-        Client client = new Client();
+        Client client = Client.getInstance();
 
         answerList = client.getAnswer(questionList, index);
         viewQuestAndAnswer(TQuest, RBAnswer1, RBAnswer2, RBAnswer3, index);
@@ -123,7 +123,11 @@ public class MainFrameController {
         testRating = 0;
         BFinish.setVisible(false);
 
+<<<<<<< HEAD
         Client client = new Client();
+=======
+        Client client = Client.getInstance();
+>>>>>>> one-client
 
         //Get questionLis
         String theme = (String) MCourseName.getValue();

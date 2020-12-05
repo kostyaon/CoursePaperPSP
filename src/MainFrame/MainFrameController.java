@@ -5,11 +5,7 @@ import Models.Answer;
 import Models.Question;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
 
 import javax.swing.*;
@@ -23,6 +19,11 @@ public class MainFrameController {
     private List<Question> questionList;
     private  List<Answer> answerList;
     private int index;
+    private float ratePerQuest = 20f;
+    private float testRating;
+
+    @FXML
+    private ToggleGroup toggleGroup;
 
     @FXML
     private Label TQuest;
@@ -66,6 +67,7 @@ public class MainFrameController {
     @FXML
     void nextQuestion(ActionEvent event) {
         //TODO: Add a true answer to the rating; add a rating for one test
+        countRating();
 
         index++;
         if (questionList.get(index) != null){
@@ -80,12 +82,18 @@ public class MainFrameController {
 
     @FXML
     void startTest(ActionEvent event) {
+        //Reset our rating for the test
+        index = 0;
+        testRating = 0;
+
         Client client = new Client();
-        //TODO: add not 3 but choosen by user id
+        //TODO: add not 3 but chosen by user id
         //Get questionList
         questionList = client.getQuestList("Java", 0, 5);
 
-        index = 0;
+        //TODO: RATE PER QUEST
+        //ratePerQuest = 100/numberOfQuest
+
 
         //Get answers for our first question and view it
         answerList = client.getAnswer(questionList, index);
@@ -96,6 +104,12 @@ public class MainFrameController {
     }
 
     void viewQuestAndAnswer(Label quest, RadioButton rb1, RadioButton rb2, RadioButton rb3, int questNumber){
+        //Group buttons
+        toggleGroup = new ToggleGroup();
+        rb1.setToggleGroup(toggleGroup);
+        rb2.setToggleGroup(toggleGroup);
+        rb3.setToggleGroup(toggleGroup);
+
         quest.setText("Question " + ++questNumber + ": " + questionList.get(--questNumber).getQuestion());
         rb1.setText(answerList.get(0).getAnswer());
         rb2.setText(answerList.get(1).getAnswer());
@@ -103,6 +117,29 @@ public class MainFrameController {
     }
 
     void countRating(){
-        //
+        RadioButton selectedButton = (RadioButton) toggleGroup.getSelectedToggle();
+        boolean correctAnswer;
+
+        if (selectedButton == RBAnswer1){
+            correctAnswer = answerList.get(0).isCorrect();
+        }
+        else{
+            if (selectedButton == RBAnswer2){
+                correctAnswer = answerList.get(1).isCorrect();
+            }
+            else{
+                correctAnswer = answerList.get(2).isCorrect();
+            }
+        }
+
+        if (correctAnswer){
+            testRating += ratePerQuest;
+            System.out.println("CLIENT >> YOU ARE RIGHT");
+            System.out.println("CKIENT >> TEST RATING = " + testRating);
+        }
+        else{
+            System.out.println("CLIENT >> YOU ARE NOT RIGHT");
+        }
     }
+
 }

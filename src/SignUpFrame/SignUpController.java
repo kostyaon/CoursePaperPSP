@@ -43,7 +43,7 @@ public class SignUpController {
                 throw new Exception("Specialization is empty!");
             }
 
-            Client client = new Client();
+            Client client = Client.getInstance();
             User user = new User(TNickname.getText(), TSpecialization.getText(), TCountry.getText());
             String success = client.signUp(user, TPassword.getText());
             if (success.equalsIgnoreCase("Success")) {

@@ -14,13 +14,22 @@ public class Client  {
     private ObjectInputStream inObj;
     private ObjectOutputStream outObj;
 
-    public Client() {
+    private static Client client = null;
+
+    private Client() {
         try{
             this.socket = new Socket("localhost", 3333);
             this.outObj = new ObjectOutputStream(socket.getOutputStream());
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public static Client getInstance(){
+        if (client == null){
+            client = new Client();
+        }
+        return client;
     }
 
     public float countSumRate(String nickname){
@@ -52,7 +61,6 @@ public class Client  {
             outObj.writeObject(password);
             outObj.flush();
 
-            inObj = new ObjectInputStream(socket.getInputStream());
             received = (String) inObj.readObject();
             System.out.println("SERVER >> ACCESS:" + received);
 
@@ -83,7 +91,7 @@ public class Client  {
         }catch (Exception e){
             e.printStackTrace();
         }
-         return received;
+        return received;
     }
 
     public List<Answer> getAnswer(List<Question> questionList, int index){
@@ -131,7 +139,6 @@ public class Client  {
             outObj.flush();
 
             //Get a list of question
-            inObj = new ObjectInputStream(socket.getInputStream());
             questions =  (List<Question>) inObj.readObject();
         }catch (Exception e){
             e.printStackTrace();

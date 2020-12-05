@@ -5,10 +5,13 @@ import Models.Answer;
 import Models.Question;
 import Models.Rating;
 import Models.User;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,7 +21,7 @@ public class MainFrameController {
     private  List<Answer> answerList;
     private Rating rating;
     private int index;
-    private float ratePerQuest = 20f;
+    private float ratePerQuest;
     private float testRating;
 
     @FXML
@@ -37,13 +40,13 @@ public class MainFrameController {
     private Label TRating;
 
     @FXML
-    private SplitMenuButton MCourseName;
+    private ComboBox MCourseName;
 
     @FXML
-    private SplitMenuButton MLevel;
+    private ComboBox MLevel;
 
     @FXML
-    private SplitMenuButton MQuestNumber;
+    private ComboBox MQuestNumber;
 
     @FXML
     private Button BStart;
@@ -67,13 +70,28 @@ public class MainFrameController {
     private RadioButton RBAnswer3;
 
     @FXML
+    private void initialize(){
+        rating = new Rating();
+
+        String[] course = {"Java", "C#", "C++", "Python"};
+        String[] level = {"0", "1", "2"};
+        String[] number = {"3", "5", "8"};
+
+        MCourseName.setItems(FXCollections.observableArrayList(course));
+
+        MLevel.setItems(FXCollections.observableArrayList(level));
+
+        MQuestNumber.setItems(FXCollections.observableArrayList(number));
+    }
+
+    @FXML
     void finishTest(ActionEvent event) {
         //We have our final rating
         countRating();
         rating.setRating(testRating);
 
         //Insert rating in DB
-        Client client = new Client();
+        Client client = Client.getInstance();
 
 
         //Update final rating
@@ -86,7 +104,7 @@ public class MainFrameController {
         countRating();
         index++;
 
-        Client client = new Client();
+        Client client = Client.getInstance();
 
         answerList = client.getAnswer(questionList, index);
         viewQuestAndAnswer(TQuest, RBAnswer1, RBAnswer2, RBAnswer3, index);
@@ -105,19 +123,18 @@ public class MainFrameController {
         testRating = 0;
         BFinish.setVisible(false);
 
-        Client client = new Client();
-        //TODO: add not 3 but chosen by user id
-        //Get user
+        Client client = Client.getInstance();
 
-        //Get questionList
-        questionList = client.getQuestList("Java", 0, 5);
+        //Get questionLis
+        String theme = (String) MCourseName.getValue();
+        int level = Integer.parseInt((String) MLevel.getValue());
+        int numberQuest = Integer.parseInt((String) MQuestNumber.getValue());
+        questionList = client.getQuestList(theme, level, numberQuest);
 
-        // rating.setTestTheme(); insert user chosen data
-        // rating.setTestLevel(); insert user chosen data
+        ratePerQuest = 100f/numberQuest;
 
-        //TODO: RATE PER QUEST
-        //ratePerQuest = 100/numberOfQuest
-
+        rating.setTestTheme(theme);
+        rating.setTestLevel(level);
 
         //Get answers for our first question and view it
         answerList = client.getAnswer(questionList, index);

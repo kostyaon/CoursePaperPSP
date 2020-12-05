@@ -47,7 +47,7 @@ public class AuthController {
        //Send to the server TNickname and found the ID
         try {
             //TODO: MAKE THIS CLIENT TO WORK FOR ONE SESSION
-            Client client = new Client();
+            Client client = Client.getInstance();
             String access = client.auth(TNickname.getText(), TPassword.getText());
             if (access.equalsIgnoreCase("Access")){
                 //Count Summary Rating

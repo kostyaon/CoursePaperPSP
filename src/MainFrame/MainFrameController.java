@@ -123,11 +123,8 @@ public class MainFrameController {
         testRating = 0;
         BFinish.setVisible(false);
 
-<<<<<<< HEAD
-        Client client = new Client();
-=======
+
         Client client = Client.getInstance();
->>>>>>> one-client
 
         //Get questionLis
         String theme = (String) MCourseName.getValue();

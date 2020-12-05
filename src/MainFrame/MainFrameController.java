@@ -20,7 +20,9 @@ import java.util.List;
 import java.util.Random;
 
 public class MainFrameController {
-    private Question question;
+    private List<Question> questionList;
+    private  List<Answer> answerList;
+    private int index;
 
     @FXML
     private Label TQuest;
@@ -63,7 +65,17 @@ public class MainFrameController {
 
     @FXML
     void nextQuestion(ActionEvent event) {
-        //Received list
+        //TODO: Add a true answer to the rating; add a rating for one test
+
+        index++;
+        if (questionList.get(index) != null){
+            Client client = new Client();
+
+            answerList = client.getAnswer(questionList, index);
+            viewQuestAndAnswer(TQuest, RBAnswer1, RBAnswer2, RBAnswer3, index);
+        }else{
+            BNext.setText("Finish");
+        }
     }
 
     @FXML
@@ -71,14 +83,26 @@ public class MainFrameController {
         Client client = new Client();
         //TODO: add not 3 but choosen by user id
         //Get questionList
-        List<Question> questionList = client.getQuestList("Java", 0, 3);
+        questionList = client.getQuestList("Java", 0, 5);
 
-        //For each question get AnswerList
-        //In a loop (getAnswer -> view -> next quest and answer load -> view)
-        List<Answer> answerList = client.getAnswer(questionList, 0);
-        for(int i=0; i<3; i++){
-            System.out.println("CLIENT >> ANSWER " + i + ":" + answerList.get(i).getAnswer());
-        }
+        index = 0;
+
+        //Get answers for our first question and view it
+        answerList = client.getAnswer(questionList, index);
+
+        //Viewing our question and answer
+        viewQuestAndAnswer(TQuest, RBAnswer1, RBAnswer2, RBAnswer3, index);
+
     }
 
+    void viewQuestAndAnswer(Label quest, RadioButton rb1, RadioButton rb2, RadioButton rb3, int questNumber){
+        quest.setText("Question " + ++questNumber + ": " + questionList.get(--questNumber).getQuestion());
+        rb1.setText(answerList.get(0).getAnswer());
+        rb2.setText(answerList.get(1).getAnswer());
+        rb3.setText(answerList.get(2).getAnswer());
+    }
+
+    void countRating(){
+        //
+    }
 }

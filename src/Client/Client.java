@@ -101,6 +101,9 @@ public class Client  {
             outObj.flush();
 
             //Receive answerList for one question
+            if (inObj == null){
+                inObj = new ObjectInputStream(socket.getInputStream());
+            }
             answerList = (List<Answer>) inObj.readObject();
         }catch (Exception e){
             e.printStackTrace();

@@ -61,6 +61,7 @@ public class Client  {
             outObj.writeObject(password);
             outObj.flush();
 
+            inObj = new ObjectInputStream(socket.getInputStream());
             received = (String) inObj.readObject();
             System.out.println("SERVER >> ACCESS:" + received);
 

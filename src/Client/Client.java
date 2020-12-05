@@ -2,6 +2,7 @@ package Client;
 
 import Models.Answer;
 import Models.Question;
+import Models.Rating;
 import Models.User;
 
 import java.io.*;
@@ -136,5 +137,36 @@ public class Client  {
             e.printStackTrace();
         }
         return questions;
+    }
+
+    public String insertRating(Rating rate){
+        String success = null;
+        try{
+            //Choose functionality
+            outObj.writeObject("Insert rate");
+            outObj.flush();
+
+            outObj.writeObject(rate);
+            outObj.flush();
+
+            inObj = new ObjectInputStream(socket.getInputStream());
+            success = (String) inObj.readObject();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return success;
+    }
+
+    public User getUser(){
+        try{
+            outObj.writeObject("Get User");
+            outObj.flush();
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

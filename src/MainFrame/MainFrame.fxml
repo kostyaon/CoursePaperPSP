@@ -102,5 +102,10 @@
             <Font size="19.0" />
          </font>
       </RadioButton>
+      <Button fx:id="BFinish" layoutX="380.0" layoutY="430.0" mnemonicParsing="false" onAction="#finishTest" prefHeight="8.0" prefWidth="132.0" style="-fx-background-color: #38b98c;" text="Finish" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -3,21 +3,20 @@ package MainFrame;
 import Client.Client;
 import Models.Answer;
 import Models.Question;
+import Models.Rating;
+import Models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
-
-import javax.swing.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
+
 
 public class MainFrameController {
+    private User user;
     private List<Question> questionList;
     private  List<Answer> answerList;
+    private Rating rating;
     private int index;
     private float ratePerQuest = 20f;
     private float testRating;
@@ -53,6 +52,9 @@ public class MainFrameController {
     private Button BNext;
 
     @FXML
+    private Button BFinish;
+
+    @FXML
     private ProgressBar ProgressBar;
 
     @FXML
@@ -65,19 +67,35 @@ public class MainFrameController {
     private RadioButton RBAnswer3;
 
     @FXML
+    void finishTest(ActionEvent event) {
+        //We have our final rating
+        countRating();
+        rating.setRating(testRating);
+
+        //Insert rating in DB
+        Client client = new Client();
+
+
+        //Update final rating
+    }
+
+
+    @FXML
     void nextQuestion(ActionEvent event) {
         //TODO: Add a true answer to the rating; add a rating for one test
         countRating();
-
         index++;
-        if (questionList.get(index) != null){
-            Client client = new Client();
 
-            answerList = client.getAnswer(questionList, index);
-            viewQuestAndAnswer(TQuest, RBAnswer1, RBAnswer2, RBAnswer3, index);
-        }else{
-            BNext.setText("Finish");
+        Client client = new Client();
+
+        answerList = client.getAnswer(questionList, index);
+        viewQuestAndAnswer(TQuest, RBAnswer1, RBAnswer2, RBAnswer3, index);
+
+        if (questionList.get(index) == questionList.get(questionList.size()-1)){
+            BNext.setVisible(false);
+            BFinish.setVisible(true);
         }
+
     }
 
     @FXML
@@ -85,11 +103,17 @@ public class MainFrameController {
         //Reset our rating for the test
         index = 0;
         testRating = 0;
+        BFinish.setVisible(false);
 
         Client client = new Client();
         //TODO: add not 3 but chosen by user id
+        //Get user
+
         //Get questionList
         questionList = client.getQuestList("Java", 0, 5);
+
+        // rating.setTestTheme(); insert user chosen data
+        // rating.setTestLevel(); insert user chosen data
 
         //TODO: RATE PER QUEST
         //ratePerQuest = 100/numberOfQuest

@@ -13,6 +13,8 @@ public class Client  {
     private Socket socket;
     private ObjectInputStream inObj;
     private ObjectOutputStream outObj;
+    private User user;
+    private float sumRate;
 
     private static Client client = null;
 
@@ -31,6 +33,22 @@ public class Client  {
             client = new Client();
         }
         return client;
+    }
+
+    public void setSumRate(float sumRate) {
+        this.sumRate = sumRate;
+    }
+
+    public float getSumRate() {
+        return sumRate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public float countSumRate(String nickname){
@@ -156,7 +174,6 @@ public class Client  {
             outObj.writeObject(rate);
             outObj.flush();
 
-            inObj = new ObjectInputStream(socket.getInputStream());
             success = (String) inObj.readObject();
 
         }catch (Exception e){
@@ -165,16 +182,17 @@ public class Client  {
         return success;
     }
 
-    public void getUser(){
+    public User getUserDB(String nickname){
+        User user = null;
         try{
-            outObj.writeObject("Get User");
+            outObj.writeObject(nickname);
             outObj.flush();
 
-
-
+            //Get User
+            user = (User) inObj.readObject();
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        return user;
     }
 }

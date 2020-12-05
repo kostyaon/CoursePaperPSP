@@ -71,6 +71,8 @@ public class MainFrameController {
 
     @FXML
     private void initialize(){
+        TNickname.setText(Client.getInstance().getUser().getNickname());
+        TRating.setText("Rating: " + Client.getInstance().getSumRate() + "%");
         rating = new Rating();
 
         String[] course = {"Java", "C#", "C++", "Python"};
@@ -88,13 +90,22 @@ public class MainFrameController {
     void finishTest(ActionEvent event) {
         //We have our final rating
         countRating();
+
         rating.setRating(testRating);
+        rating.setUserID(Client.getInstance().getUser().getUserID());
 
         //Insert rating in DB
-        Client client = Client.getInstance();
+        String success = Client.getInstance().insertRating(rating);
 
 
         //Update final rating
+        float rate = (Client.getInstance().getSumRate() + testRating)/2;
+        Client.getInstance().setSumRate(rate);
+
+        //Block finish and upgrade view
+        BFinish.setDisable(true);
+        BStart.setDisable(false);
+        TRating.setText("Rating: " + Client.getInstance().getSumRate() + "%");
     }
 
 
@@ -104,14 +115,13 @@ public class MainFrameController {
         countRating();
         index++;
 
-        Client client = Client.getInstance();
-
-        answerList = client.getAnswer(questionList, index);
+        answerList = Client.getInstance().getAnswer(questionList, index);
         viewQuestAndAnswer(TQuest, RBAnswer1, RBAnswer2, RBAnswer3, index);
 
         if (questionList.get(index) == questionList.get(questionList.size()-1)){
             BNext.setVisible(false);
             BFinish.setVisible(true);
+            BFinish.setDisable(false);
         }
 
     }
@@ -121,15 +131,16 @@ public class MainFrameController {
         //Reset our rating for the test
         index = 0;
         testRating = 0;
-        BFinish.setVisible(false);
 
-        Client client = Client.getInstance();
+        BFinish.setVisible(false);
+        BNext.setVisible(true);
+        BStart.setDisable(true);
 
         //Get questionLis
         String theme = (String) MCourseName.getValue();
         int level = Integer.parseInt((String) MLevel.getValue());
         int numberQuest = Integer.parseInt((String) MQuestNumber.getValue());
-        questionList = client.getQuestList(theme, level, numberQuest);
+        questionList = Client.getInstance().getQuestList(theme, level, numberQuest);
 
         ratePerQuest = 100f/numberQuest;
 
@@ -137,11 +148,10 @@ public class MainFrameController {
         rating.setTestLevel(level);
 
         //Get answers for our first question and view it
-        answerList = client.getAnswer(questionList, index);
+        answerList = Client.getInstance().getAnswer(questionList, index);
 
         //Viewing our question and answer
         viewQuestAndAnswer(TQuest, RBAnswer1, RBAnswer2, RBAnswer3, index);
-
     }
 
     void viewQuestAndAnswer(Label quest, RadioButton rb1, RadioButton rb2, RadioButton rb3, int questNumber){

@@ -20,6 +20,7 @@ public class Client  {
         try{
             this.socket = new Socket("localhost", 3333);
             this.outObj = new ObjectOutputStream(socket.getOutputStream());
+            this.inObj = new ObjectInputStream(socket.getInputStream());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -61,7 +62,6 @@ public class Client  {
             outObj.writeObject(password);
             outObj.flush();
 
-            inObj = new ObjectInputStream(socket.getInputStream());
             received = (String) inObj.readObject();
             System.out.println("SERVER >> ACCESS:" + received);
 
@@ -86,7 +86,6 @@ public class Client  {
             outObj.writeObject(password);
             outObj.flush();
 
-            inObj = new ObjectInputStream(socket.getInputStream());
             received = (String) inObj.readObject();//Successfully or not
             System.out.println("SERVER >> ADDED:" + received);
         }catch (Exception e){

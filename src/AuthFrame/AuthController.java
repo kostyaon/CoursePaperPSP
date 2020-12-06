@@ -1,5 +1,6 @@
 package AuthFrame;
 
+import AlertFrame.AlertFrameView;
 import Client.Client;
 import MainFrame.MainFrameView;
 import Models.PrivateData;
@@ -51,8 +52,8 @@ public class AuthController {
     }
 
     @FXML
-    void logInFrame(ActionEvent event) throws IOException {
-
+    void logInFrame(ActionEvent event) throws Exception {
+        String errMSG;
        //Send to the server TNickname and found the ID
         try {
             Client client = Client.getInstance();
@@ -76,10 +77,17 @@ public class AuthController {
                 stage.close();
             }
             else{
-                throw new Exception("Invalid nickname or password" );
+                errMSG = "Invalid nickname or password";
+                throw new Exception(errMSG);
             }
         }catch (Exception e){
             System.out.println("Exception: " + e.getLocalizedMessage());
+
+            //Send errMSG to the errorWindow
+            Stage loginStage = new Stage();
+            AlertFrameView frameView = new AlertFrameView();
+            frameView.start(loginStage);
+
             e.printStackTrace();
         }
     }

@@ -1,5 +1,6 @@
 package MainFrame;
 
+import AlertFrame.AlertFrameView;
 import Client.Client;
 import Models.Answer;
 import Models.Question;
@@ -137,31 +138,46 @@ public class MainFrameController {
     }
 
     @FXML
-    void startTest(ActionEvent event) {
+    void startTest(ActionEvent event) throws Exception {
         //Reset our rating for the test
         index = 0;
         testRating = 0;
+        String errMSG;
+        try {
+            //Get questionLis
+            String theme = (String) MCourseName.getValue();
+            int level = Integer.parseInt((String) MLevel.getValue());
+            int numberQuest = Integer.parseInt((String) MQuestNumber.getValue());
+            questionList = Client.getInstance().getQuestList(theme, level, numberQuest);
 
-        BFinish.setVisible(false);
-        BNext.setVisible(true);
-        BStart.setDisable(true);
+            if (theme == null){
+                errMSG = "Hey! What about theme?";
+                throw new Exception(errMSG);
+            }
 
-        //Get questionLis
-        String theme = (String) MCourseName.getValue();
-        int level = Integer.parseInt((String) MLevel.getValue());
-        int numberQuest = Integer.parseInt((String) MQuestNumber.getValue());
-        questionList = Client.getInstance().getQuestList(theme, level, numberQuest);
+            ratePerQuest = 100f / numberQuest;
 
-        ratePerQuest = 100f/numberQuest;
+            rating.setTestTheme(theme);
+            rating.setTestLevel(level);
 
-        rating.setTestTheme(theme);
-        rating.setTestLevel(level);
+            //Get answers for our first question and view it
+            answerList = Client.getInstance().getAnswer(questionList, index);
 
-        //Get answers for our first question and view it
-        answerList = Client.getInstance().getAnswer(questionList, index);
+            BFinish.setVisible(false);
+            BNext.setVisible(true);
+            BStart.setDisable(true);
 
-        //Viewing our question and answer
-        viewQuestAndAnswer(TQuest, RBAnswer1, RBAnswer2, RBAnswer3, index);
+            //Viewing our question and answer
+            viewQuestAndAnswer(TQuest, RBAnswer1, RBAnswer2, RBAnswer3, index);
+        }catch (Exception e){
+            errMSG = "Hmmm! Change some option! We haven't got this type of test!";
+            e.printStackTrace();
+
+            //Send errMSG to the errorWindow
+            Stage loginStage = new Stage();
+            AlertFrameView frameView = new AlertFrameView();
+            frameView.start(loginStage);
+        }
     }
 
     void viewQuestAndAnswer(Label quest, RadioButton rb1, RadioButton rb2, RadioButton rb3, int questNumber){

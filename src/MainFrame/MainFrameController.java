@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +69,15 @@ public class MainFrameController {
 
     @FXML
     private RadioButton RBAnswer3;
+
+    @FXML
+    private Button BClose;
+
+    @FXML
+    void closeWindow(ActionEvent event) {
+        //Close the connection
+        Client.getInstance().closeConnection(BClose);
+    }
 
     @FXML
     private void initialize(){

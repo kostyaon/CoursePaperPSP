@@ -30,6 +30,15 @@ public class AuthController {
     private Button BLogIn;
 
     @FXML
+    private Button BClose;
+
+    @FXML
+    void closeWindow(ActionEvent event) {
+        //Close the connection
+        Client.getInstance().closeConnection(BClose);
+    }
+
+    @FXML
     void signUpFrame(MouseEvent event) {
         try{
             Stage signStage = new Stage();

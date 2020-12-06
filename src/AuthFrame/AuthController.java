@@ -15,6 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class AuthController {
 
@@ -63,6 +65,9 @@ public class AuthController {
 
                 //Count Summary Rating
                 float sumRating = client.countSumRate(TNickname.getText());
+                if (Float.isNaN(sumRating)){
+                    sumRating = 0f;
+                }
                 client.setSumRate(sumRating);
 
                 System.out.println("CLIENT >> SUM RATE = " + sumRating);

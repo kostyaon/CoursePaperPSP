@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,8 +83,10 @@ public class MainFrameController {
 
     @FXML
     private void initialize(){
+        DecimalFormat df = new DecimalFormat("0.00");
+
         TNickname.setText(Client.getInstance().getUser().getNickname());
-        TRating.setText("Rating: " + Client.getInstance().getSumRate() + "%");
+        TRating.setText("Rating: " + df.format(Client.getInstance().getSumRate()) + "%");
         rating = new Rating();
 
         String[] course = {"Java", "C#", "C++", "Python"};
@@ -99,6 +102,7 @@ public class MainFrameController {
 
     @FXML
     void finishTest(ActionEvent event) {
+        DecimalFormat df = new DecimalFormat("0.00");
         //We have our final rating
         countRating();
 
@@ -116,7 +120,7 @@ public class MainFrameController {
         //Block finish and upgrade view
         BFinish.setDisable(true);
         BStart.setDisable(false);
-        TRating.setText("Rating: " + Client.getInstance().getSumRate() + "%");
+        TRating.setText("Rating: " + df.format(Client.getInstance().getSumRate()) + "%");
     }
 
 

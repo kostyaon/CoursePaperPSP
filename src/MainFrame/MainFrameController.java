@@ -174,10 +174,11 @@ public class MainFrameController {
             //Viewing our question and answer
             viewQuestAndAnswer(TQuest, RBAnswer1, RBAnswer2, RBAnswer3, index);
         }catch (Exception e){
-            errMSG = "Hmmm! Change some option! We haven't got this type of test!";
+            errMSG = "We haven't got this type of test!";
             e.printStackTrace();
 
             //Send errMSG to the errorWindow
+            AlertFrameView.errMSG = errMSG;
             Stage loginStage = new Stage();
             AlertFrameView frameView = new AlertFrameView();
             frameView.start(loginStage);

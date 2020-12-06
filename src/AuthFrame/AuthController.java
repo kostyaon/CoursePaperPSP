@@ -43,20 +43,27 @@ public class AuthController {
     }
 
     @FXML
-    void signUpFrame(MouseEvent event) {
+    void signUpFrame(MouseEvent event) throws Exception {
+        String errMSG = null;
         try{
             Stage signStage = new Stage();
             SignUpView signUpView = new SignUpView();
             signUpView.start(signStage);
         }catch (Exception e){
-            System.out.println("Cannot open SignUp form! Exception: " + e.getLocalizedMessage());
+            errMSG = "Cannot open SignUp form!";
+
+            AlertFrameView.errMSG = errMSG;
+            Stage loginStage = new Stage();
+            AlertFrameView frameView = new AlertFrameView();
+            frameView.start(loginStage);
+
             e.printStackTrace();
         }
     }
 
     @FXML
     void logInFrame(ActionEvent event) throws Exception {
-        String errMSG;
+        String errMSG = null;
        //Send to the server TNickname and found the ID
         try {
             Client client = Client.getInstance();
@@ -90,9 +97,11 @@ public class AuthController {
             System.out.println("Exception: " + e.getLocalizedMessage());
 
             //Send errMSG to the errorWindow
+            AlertFrameView.errMSG = errMSG;
             Stage loginStage = new Stage();
             AlertFrameView frameView = new AlertFrameView();
             frameView.start(loginStage);
+
 
             e.printStackTrace();
         }

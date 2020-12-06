@@ -1,5 +1,6 @@
 package SignUpFrame;
 
+import AlertFrame.AlertFrameView;
 import Client.Client;
 import Models.PrivateData;
 import Models.User;
@@ -29,18 +30,30 @@ public class SignUpController {
     private Button BSignUp;
 
     @FXML
-    void signUp(ActionEvent event) throws IOException {
+    private Button BClose;
 
+    @FXML
+    void closeWindow(ActionEvent event) {
+        Stage stage = (Stage) BClose.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void signUp(ActionEvent event) throws Exception {
+        String errMSG;
         try {
             //Throw an exceptions, if some fields is empty
             if (TNickname.getText().equals("")) {
-                throw new Exception("Nickname field is empty!");
+                errMSG = "Nickname field is empty!";
+                throw new Exception(errMSG);
             }
             if (TPassword.getText().equals("")) {
-                throw new Exception("Password is empty!");
+                errMSG = "Password is empty!";
+                throw new Exception(errMSG);
             }
             if (TSpecialization.getText().equals("")) {
-                throw new Exception("Specialization is empty!");
+                errMSG = "Specialization is empty!";
+                throw new Exception(errMSG);
             }
 
             Client client = Client.getInstance();
@@ -52,6 +65,13 @@ public class SignUpController {
                 stage.close();
             }
         }catch (Exception e){
+            errMSG = "Error: You are not unique! Come up with a new nickname!";
+
+            //Send errMSG to the errorWindow
+            Stage loginStage = new Stage();
+            AlertFrameView frameView = new AlertFrameView();
+            frameView.start(loginStage);
+
             e.printStackTrace();
         }
     }

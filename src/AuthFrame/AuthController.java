@@ -1,5 +1,6 @@
 package AuthFrame;
 
+import AlertFrame.AlertFrameView;
 import Client.Client;
 import MainFrame.MainFrameView;
 import Models.PrivateData;
@@ -9,11 +10,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class AuthController {
 
@@ -21,13 +25,22 @@ public class AuthController {
     private TextField TNickname;
 
     @FXML
-    private TextField TPassword;
+    private PasswordField TPassword;
 
     @FXML
     private Label BSignUp;
 
     @FXML
     private Button BLogIn;
+
+    @FXML
+    private Button BClose;
+
+    @FXML
+    void closeWindow(ActionEvent event) {
+        //Close the connection
+        Client.getInstance().closeConnection(BClose);
+    }
 
     @FXML
     void signUpFrame(MouseEvent event) {
@@ -42,8 +55,8 @@ public class AuthController {
     }
 
     @FXML
-    void logInFrame(ActionEvent event) throws IOException {
-
+    void logInFrame(ActionEvent event) throws Exception {
+        String errMSG;
        //Send to the server TNickname and found the ID
         try {
             Client client = Client.getInstance();
@@ -53,6 +66,9 @@ public class AuthController {
 
                 //Count Summary Rating
                 float sumRating = client.countSumRate(TNickname.getText());
+                if (Float.isNaN(sumRating)){
+                    sumRating = 0f;
+                }
                 client.setSumRate(sumRating);
 
                 System.out.println("CLIENT >> SUM RATE = " + sumRating);
@@ -67,10 +83,17 @@ public class AuthController {
                 stage.close();
             }
             else{
-                throw new Exception("Invalid nickname or password" );
+                errMSG = "Invalid nickname or password";
+                throw new Exception(errMSG);
             }
         }catch (Exception e){
             System.out.println("Exception: " + e.getLocalizedMessage());
+
+            //Send errMSG to the errorWindow
+            Stage loginStage = new Stage();
+            AlertFrameView frameView = new AlertFrameView();
+            frameView.start(loginStage);
+
             e.printStackTrace();
         }
     }

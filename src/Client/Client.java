@@ -4,6 +4,8 @@ import Models.Answer;
 import Models.Question;
 import Models.Rating;
 import Models.User;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
@@ -194,5 +196,17 @@ public class Client  {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public void closeConnection(Button BClose){
+        try {
+            Stage stage = (Stage) BClose.getScene().getWindow();
+            stage.close();
+
+            outObj.writeObject("Exit");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

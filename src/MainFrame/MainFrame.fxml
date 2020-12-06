@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
@@ -30,7 +31,7 @@
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#575757" height="11.0" layoutX="176.0" layoutY="151.0" stroke="BLACK" strokeType="INSIDE" width="613.0" />
             <Circle fx:id="IMIconUser" fill="#ff5c5c" layoutX="92.0" layoutY="57.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" style="-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.2), 100, 0.1, 0, 6);" />
-            <Label fx:id="TNickname" layoutX="61.0" layoutY="101.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, .75), 10, 0.3, 0, 1);" text="Nickname" textFill="WHITE">
+            <Label fx:id="TNickname" alignment="TOP_CENTER" layoutX="61.0" layoutY="101.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, .75), 10, 0.3, 0, 1);" text="Nickname" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" wrapText="true">
                <font>
                   <Font name="Marlett" size="14.0" />
                </font>
@@ -82,5 +83,13 @@
       <ComboBox fx:id="MCourseName" layoutX="-13.0" layoutY="244.0" prefHeight="39.0" prefWidth="210.0" promptText="Course name" scaleX="0.7" scaleY="0.7" />
       <ComboBox fx:id="MLevel" layoutX="-13.0" layoutY="295.0" prefHeight="39.0" prefWidth="210.0" promptText="Level" scaleX="0.7" scaleY="0.7" />
       <ComboBox fx:id="MQuestNumber" layoutX="-13.0" layoutY="346.0" prefHeight="39.0" prefWidth="210.0" promptText="Questions" scaleX="0.7" scaleY="0.7" />
+      <Button fx:id="BClose" cancelButton="true" layoutX="735.0" layoutY="4.0" minWidth="27.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="45.0" prefWidth="54.0" scaleX="1.4" style="-fx-background-color: #292929; -fx-background-insets: 2; -fx-background-radius: 25;" text="X" textAlignment="CENTER" textFill="#878383">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <Bloom threshold="0.51" />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

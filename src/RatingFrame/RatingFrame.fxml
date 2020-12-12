@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="286.0" prefWidth="476.0" style="-fx-background-color: #292929; -fx-background-insets: 2; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RatingFrame.RatingFrame">
+<AnchorPane prefHeight="286.0" prefWidth="476.0" style="-fx-background-color: #292929; -fx-background-insets: 2; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RatingFrame.RatingFrameController">
    <children>
       <Button fx:id="BClose" cancelButton="true" layoutX="428.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="25.0" prefWidth="0.0" scaleX="1.3" style="-fx-background-color: #292929; -fx-background-insets: 2; -fx-background-radius: 25;" text="X" textAlignment="CENTER" textFill="#878383">
          <font>

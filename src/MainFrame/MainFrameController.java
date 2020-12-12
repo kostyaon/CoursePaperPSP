@@ -7,6 +7,7 @@ import Models.Answer;
 import Models.Question;
 import Models.Rating;
 import Models.User;
+import RatingFrame.RatingFrameView;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -63,6 +64,9 @@ public class MainFrameController {
     private Button BFinish;
 
     @FXML
+    private Button BRating;
+
+    @FXML
     private ProgressBar ProgressBar;
 
     @FXML
@@ -79,6 +83,24 @@ public class MainFrameController {
 
     @FXML
     private Button AdminClick;
+
+    @FXML
+    void openRatingFrame(ActionEvent event) throws Exception {
+        String errMSG = null;
+        try {
+            Stage ratingStage = new Stage();
+            RatingFrameView ratingFrameView = new RatingFrameView();
+            ratingFrameView.start(ratingStage);
+        }catch (Exception e){
+            errMSG = "You are not admin!";
+            e.printStackTrace();
+
+            AlertFrameView.errMSG = errMSG;
+            Stage errStage = new Stage();
+            AlertFrameView frameView = new AlertFrameView();
+            frameView.start(errStage);
+        }
+    }
 
     @FXML
     void openAdminWindow(ActionEvent event) throws Exception {

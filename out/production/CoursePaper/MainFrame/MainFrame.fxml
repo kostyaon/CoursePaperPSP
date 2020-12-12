@@ -54,6 +54,11 @@
                </font>
             </Label>
             <Button fx:id="AdminClick" layoutX="65.0" layoutY="28.0" mnemonicParsing="false" onAction="#openAdminWindow" prefHeight="60.0" prefWidth="55.0" style="-fx-background-color: #ffffff00;" textFill="#ffffff00" />
+            <Button fx:id="BRating" layoutX="61.0" layoutY="118.0" minHeight="8.0" mnemonicParsing="false" onAction="#openRatingFrame" prefHeight="22.0" prefWidth="65.0" scaleY="0.4" style="-fx-background-color: #ffffff00;">
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Button fx:id="BNext" layoutX="380.0" layoutY="430.0" mnemonicParsing="false" onAction="#nextQuestion" prefHeight="8.0" prefWidth="132.0" style="-fx-background-color: #38b98c;" text="Next" textFill="WHITE">

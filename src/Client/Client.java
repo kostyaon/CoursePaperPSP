@@ -248,6 +248,23 @@ public class Client  {
         return userList;
     }
 
+    public String setAdmin(int userID){
+        String success = null;
+        try{
+            outObj.writeObject("Admin");
+            outObj.flush();
+
+            outObj.writeObject(userID);
+            outObj.flush();
+
+            success = (String) inObj.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+            success = "Error";
+        }
+        return success;
+    }
+
     public void closeConnection(Button BClose){
         try {
             Stage stage = (Stage) BClose.getScene().getWindow();
@@ -257,6 +274,5 @@ public class Client  {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 }

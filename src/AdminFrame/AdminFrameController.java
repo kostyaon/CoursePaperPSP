@@ -4,7 +4,6 @@ import AdminFrame.CreateTestFrame.TestFrameView;
 import AdminFrame.SelectFrame.SelectFrameView;
 import AlertFrame.AlertFrameView;
 import Client.Client;
-import Models.Rating;
 import Models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,10 +47,10 @@ public class AdminFrameController {
 
     @FXML
     void initialize(){
-        ColUser.setCellValueFactory(new PropertyValueFactory<User, Integer>("userID"));
-        ColNick.setCellValueFactory(new PropertyValueFactory<User, String>("nickname"));
-        ColSpec.setCellValueFactory(new PropertyValueFactory<User, String>("specialization"));
-        ColCountry.setCellValueFactory(new PropertyValueFactory<User, String>("country"));
+        ColUser.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        ColNick.setCellValueFactory(new PropertyValueFactory<>("nickname"));
+        ColSpec.setCellValueFactory(new PropertyValueFactory<>("specialization"));
+        ColCountry.setCellValueFactory(new PropertyValueFactory<>("country"));
 
         //Retrieve List<User> from DB
         List<User> userList = Client.getInstance().getListUserDB();
@@ -69,7 +68,7 @@ public class AdminFrameController {
             SelectFrameView selectFrameView = new SelectFrameView();
             selectFrameView.start(adminStage);
         }catch (Exception e){
-            errMSG = "You are not admin!";
+            errMSG = "Something goes wrong!!";
             e.printStackTrace();
 
             AlertFrameView.errMSG = errMSG;
@@ -88,7 +87,7 @@ public class AdminFrameController {
             SelectFrameView selectFrameView = new SelectFrameView();
             selectFrameView.start(deleteStage);
         }catch (Exception e){
-            errMSG = "You are not admin!";
+            errMSG = "Something goes wrong!!";
             e.printStackTrace();
 
             AlertFrameView.errMSG = errMSG;

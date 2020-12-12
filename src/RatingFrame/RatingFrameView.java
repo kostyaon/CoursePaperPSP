@@ -39,6 +39,7 @@ public class RatingFrameView extends Application {
         });
 
         stage.setScene(scene);
+        //TODO: Delete //
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);

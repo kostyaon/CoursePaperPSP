@@ -19,14 +19,14 @@
             <Bloom threshold="0.51" />
          </effect>
       </Button>
-      <TableView layoutY="57.0" prefHeight="230.0" prefWidth="476.0" style="-fx-background-color: #878787; -fx-background-insets: 2; -fx-background-radius: 25;">
+      <TableView fx:id="ratingTable" layoutY="57.0" prefHeight="230.0" prefWidth="476.0" style="-fx-background-color: #878787; -fx-background-insets: 2; -fx-background-radius: 25;">
         <columns>
-          <TableColumn prefWidth="151.99999696016312" text="Theme" />
-          <TableColumn prefWidth="176.80006408691406" text="Level" />
-            <TableColumn prefWidth="150.39996337890625" text="Rating %" />
+          <TableColumn fx:id="ColTheme" prefWidth="151.99999696016312" text="Theme" />
+          <TableColumn fx:id="ColLevel" prefWidth="176.80006408691406" text="Level" />
+            <TableColumn fx:id="ColRating" prefWidth="150.39996337890625" text="Rating %" />
         </columns>
          <effect>
-            <DropShadow color="#000000c0" spread="0.21" />
+            <DropShadow blurType="GAUSSIAN" color="#000000c0" height="37.68" radius="11.192499999999999" spread="0.57" width="9.09" />
          </effect>
       </TableView>
       <Label layoutX="32.0" layoutY="10.0" text="Summary rating:" textFill="WHITE">

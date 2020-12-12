@@ -167,16 +167,24 @@ public class MainFrameController {
 
         //Insert rating in DB
         String success = Client.getInstance().insertRating(rating);
-
+        //TODO: error or success
 
         //Update final rating
-        float rate = (Client.getInstance().getSumRate() + testRating)/2;
+        float rate;
+        if (Client.getInstance().getSumRate() != 0){
+            rate = (Client.getInstance().getSumRate() + testRating)/2;
+        }else{
+            rate = testRating;
+        }
+
         Client.getInstance().setSumRate(rate);
 
         //Block finish and upgrade view
         BFinish.setDisable(true);
         BStart.setDisable(false);
         TRating.setText("Rating: " + df.format(Client.getInstance().getSumRate()) + "%");
+
+        rating = new Rating();
     }
 
 

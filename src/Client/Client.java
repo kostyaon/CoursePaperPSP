@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Client  {
@@ -202,6 +203,22 @@ public class Client  {
             e.printStackTrace();
         }
         return data;
+    }
+
+    public List<Rating> getRatingDB(int userID){
+        List<Rating> ratingList = new ArrayList<>();
+        try{
+            outObj.writeObject("Rating");
+            outObj.flush();
+
+            outObj.writeObject(userID);
+            outObj.flush();
+
+            ratingList = (List<Rating>) inObj.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ratingList;
     }
 
     public User getUserDB(String nickname){

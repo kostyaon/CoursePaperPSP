@@ -70,6 +70,7 @@ public class AuthController {
             String access = client.auth(TNickname.getText(), TPassword.getText());
             if (access.equalsIgnoreCase("Access")){
                 client.setUser(client.getUserDB(TNickname.getText()));
+                client.setPrivateData(client.getPrivateDataDB(client.getUser().getUserID()));
 
                 //Count Summary Rating
                 float sumRating = client.countSumRate(TNickname.getText());

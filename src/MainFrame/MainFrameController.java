@@ -106,11 +106,18 @@ public class MainFrameController {
     void openAdminWindow(ActionEvent event) throws Exception {
         String errMSG = null;
         try {
-            Stage adminStage = new Stage();
-            AdminFrameView adminFrameView = new AdminFrameView();
-            adminFrameView.start(adminStage);
+
+            if (Client.getInstance().getPrivateData().getRole()) {
+                //Check if Role - admin
+                Stage adminStage = new Stage();
+                AdminFrameView adminFrameView = new AdminFrameView();
+                adminFrameView.start(adminStage);
+            }
+            else{
+                errMSG = "You are not admin!";
+                throw new Exception(errMSG);
+            }
         }catch (Exception e){
-            errMSG = "You are not admin!";
             e.printStackTrace();
 
             AlertFrameView.errMSG = errMSG;

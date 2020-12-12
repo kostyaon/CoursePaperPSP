@@ -80,7 +80,6 @@ public class AuthController {
 
                 System.out.println("CLIENT >> SUM RATE = " + sumRating);
 
-                //Add rating to parameters
                 Stage loginStage = new Stage();
                 MainFrameView mainFrameView = new MainFrameView();
                 mainFrameView.start(loginStage);
@@ -98,9 +97,9 @@ public class AuthController {
 
             //Send errMSG to the errorWindow
             AlertFrameView.errMSG = errMSG;
-            Stage loginStage = new Stage();
+            Stage errStage = new Stage();
             AlertFrameView frameView = new AlertFrameView();
-            frameView.start(loginStage);
+            frameView.start(errStage);
 
 
             e.printStackTrace();

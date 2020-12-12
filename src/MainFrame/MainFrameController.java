@@ -1,5 +1,6 @@
 package MainFrame;
 
+import AdminFrame.AdminFrameView;
 import AlertFrame.AlertFrameView;
 import Client.Client;
 import Models.Answer;
@@ -13,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +78,27 @@ public class MainFrameController {
     private Button BClose;
 
     @FXML
+    private Button AdminClick;
+
+    @FXML
+    void openAdminWindow(ActionEvent event) throws Exception {
+        String errMSG = null;
+        try {
+            Stage adminStage = new Stage();
+            AdminFrameView adminFrameView = new AdminFrameView();
+            adminFrameView.start(adminStage);
+        }catch (Exception e){
+            errMSG = "You are not admin!";
+            e.printStackTrace();
+
+            AlertFrameView.errMSG = errMSG;
+            Stage errStage = new Stage();
+            AlertFrameView frameView = new AlertFrameView();
+            frameView.start(errStage);
+        }
+    }
+
+    @FXML
     void closeWindow(ActionEvent event) {
         //Close the connection
         Client.getInstance().closeConnection(BClose);
@@ -87,6 +110,7 @@ public class MainFrameController {
 
         TNickname.setText(Client.getInstance().getUser().getNickname());
         TRating.setText("Rating: " + df.format(Client.getInstance().getSumRate()) + "%");
+
         rating = new Rating();
 
         String[] course = {"Java", "C#", "C++", "Python"};
@@ -98,6 +122,9 @@ public class MainFrameController {
         MLevel.setItems(FXCollections.observableArrayList(level));
 
         MQuestNumber.setItems(FXCollections.observableArrayList(number));
+
+        BFinish.setVisible(false);
+        BNext.setDisable(true);
     }
 
     @FXML
@@ -148,7 +175,7 @@ public class MainFrameController {
         testRating = 0;
         String errMSG;
         try {
-            //Get questionLis
+            //Get questionList
             String theme = (String) MCourseName.getValue();
             int level = Integer.parseInt((String) MLevel.getValue());
             int numberQuest = Integer.parseInt((String) MQuestNumber.getValue());
@@ -169,6 +196,7 @@ public class MainFrameController {
 
             BFinish.setVisible(false);
             BNext.setVisible(true);
+            BNext.setDisable(false);
             BStart.setDisable(true);
 
             //Viewing our question and answer

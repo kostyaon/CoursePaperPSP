@@ -7,10 +7,10 @@ import Models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 
 public class SignUpController {
 
@@ -24,7 +24,7 @@ public class SignUpController {
     private TextField TCountry;
 
     @FXML
-    private TextField TPassword;
+    private PasswordField TPassword;
 
     @FXML
     private Button BSignUp;

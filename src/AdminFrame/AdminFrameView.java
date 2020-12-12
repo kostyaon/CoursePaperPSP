@@ -19,7 +19,7 @@ public class AdminFrameView extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("AdminFrame.fxml"));
 
-        Scene scene = new Scene(root, 600, 243);
+        Scene scene = new Scene(root, 600, 400);
         scene.setFill(Color.TRANSPARENT);
 
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {

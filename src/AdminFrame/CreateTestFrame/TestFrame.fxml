@@ -7,11 +7,11 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="363.0" prefWidth="318.0" style="-fx-background-color: #292929; -fx-background-insets: 2; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminFrame.CreateTestFrame.TestFrame">
+<AnchorPane prefHeight="363.0" prefWidth="318.0" style="-fx-background-color: #292929; -fx-background-insets: 2; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminFrame.CreateTestFrame.TestFrameController">
    <children>
       <Label layoutX="73.0" layoutY="22.0" text="Create test" textFill="WHITE">
          <font>
@@ -44,4 +44,7 @@
          </effect>
       </Button>
    </children>
+   <effect>
+      <DropShadow height="46.03" radius="11.49" spread="0.06" width="1.93" />
+   </effect>
 </AnchorPane>

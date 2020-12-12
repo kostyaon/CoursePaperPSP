@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,7 +23,6 @@
       <TextField fx:id="TNickname" layoutX="59.0" layoutY="168.0" prefHeight="25.0" prefWidth="207.0" promptText="Nickname" />
       <TextField fx:id="TSpecialization" layoutX="59.0" layoutY="210.0" prefHeight="25.0" prefWidth="207.0" promptText="Specialization" />
       <TextField fx:id="TCountry" layoutX="59.0" layoutY="252.0" prefHeight="25.0" prefWidth="207.0" promptText="Country" />
-      <TextField fx:id="TPassword" layoutX="59.0" layoutY="293.0" prefHeight="25.0" prefWidth="207.0" promptText="Password" />
       <Button fx:id="BSignUp" layoutX="114.0" layoutY="361.0" mnemonicParsing="false" onAction="#signUp" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #34af84;" text="SignUp" textFill="WHITE">
          <font>
             <Font name="Marlett" size="15.0" />
@@ -36,5 +36,6 @@
             <Bloom threshold="0.51" />
          </effect>
       </Button>
+      <PasswordField fx:id="TPassword" layoutX="59.0" layoutY="293.0" prefHeight="26.0" prefWidth="207.0" promptText="Password" />
    </children>
 </AnchorPane>

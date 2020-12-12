@@ -4,11 +4,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="173.0" prefWidth="245.0" style="-fx-background-color: #292929; -fx-background-insets: 2; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminFrame.SelectFrame.SelectFrame">
+<AnchorPane prefHeight="173.0" prefWidth="245.0" style="-fx-background-color: #292929; -fx-background-insets: 2; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminFrame.SelectFrame.SelectFrameController">
    <children>
       <Label layoutX="53.0" layoutY="16.0" text="Select user" textFill="WHITE">
          <font>
@@ -31,4 +31,7 @@
          </effect>
       </Button>
    </children>
+   <effect>
+      <DropShadow spread="0.3" />
+   </effect>
 </AnchorPane>

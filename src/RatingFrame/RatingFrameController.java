@@ -41,9 +41,9 @@ public class RatingFrameController {
         TRating.setText(df.format(Client.getInstance().getSumRate()) + "%");
 
         //Associate columns with data
-        ColTheme.setCellValueFactory(new PropertyValueFactory<Rating, String>("testTheme"));
-        ColLevel.setCellValueFactory(new PropertyValueFactory<Rating, Integer>("testLevel"));
-        ColRating.setCellValueFactory(new PropertyValueFactory<Rating, Float>("rating"));
+        ColTheme.setCellValueFactory(new PropertyValueFactory<>("testTheme"));
+        ColLevel.setCellValueFactory(new PropertyValueFactory<>("testLevel"));
+        ColRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
 
         //Retrieve List<Rating> from DB
         List<Rating> ratingList = Client.getInstance().getRatingDB(Client.getInstance().getUser().getUserID());

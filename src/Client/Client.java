@@ -150,7 +150,6 @@ public class Client  {
     public List<Question> getQuestList(String theme, int level, int numberOfQuest){
         List<Question> questions = null;
         try{
-            //TODO: We can send all this as one object
             //Choose functionality
             outObj.writeObject("StartTest");
             outObj.flush();
@@ -235,6 +234,60 @@ public class Client  {
         return user;
     }
 
+    public List<User> getListUserDB(){
+        List<User> userList = null;
+        try{
+            outObj.writeObject("User list");
+            outObj.flush();
+
+            userList = (List<User>) inObj.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
+    public String setOrDelete(boolean setDel, int userID){
+        String success = null;
+        try{
+            outObj.writeObject("Setdel");
+            outObj.flush();
+
+            if (setDel){
+                outObj.writeObject("Set");
+                outObj.flush();
+            }else{
+                outObj.writeObject("Del");
+                outObj.flush();
+            }
+
+            outObj.writeObject(userID);
+            outObj.flush();
+
+            success = (String) inObj.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+            success = "Error";
+        }
+        return success;
+    }
+
+    public void createTest(Question question, Answer answer){
+        try{
+            outObj.writeObject("Test");
+            outObj.flush();
+
+            outObj.writeObject(question);
+            outObj.flush();
+
+            outObj.writeObject(answer);
+            outObj.flush();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void closeConnection(Button BClose){
         try {
             Stage stage = (Stage) BClose.getScene().getWindow();
@@ -244,6 +297,5 @@ public class Client  {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 }

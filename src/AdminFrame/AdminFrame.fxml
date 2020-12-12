@@ -11,12 +11,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #292929; -fx-background-insets: 2; -fx-background-radius: 25;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminFrame.AdminFrameController">
    <children>
-      <TableView layoutY="156.0" prefHeight="243.0" prefWidth="600.0" style="-fx-background-insets: 2; -fx-background-color: #878787; -fx-background-radius: 25;">
+      <TableView fx:id="table" layoutY="156.0" prefHeight="243.0" prefWidth="600.0" style="-fx-background-insets: 2; -fx-background-color: #878787; -fx-background-radius: 25;">
         <columns>
-          <TableColumn prefWidth="75.0" text="UserID" />
-          <TableColumn prefWidth="198.4000244140625" text="Specialization" />
-            <TableColumn prefWidth="181.5999755859375" text="Country" />
-            <TableColumn prefWidth="144.0" text="Summary Rating" />
+          <TableColumn fx:id="ColUser" prefWidth="140.80005490779877" text="UserID" />
+            <TableColumn fx:id="ColNick" prefWidth="159.99993896484375" text="Nickname" />
+          <TableColumn fx:id="ColSpec" prefWidth="109.5999755859375" text="Specialization" />
+            <TableColumn fx:id="ColCountry" prefWidth="187.19992065429688" text="Country" />
         </columns>
          <effect>
             <DropShadow height="37.68" radius="12.9775" spread="0.54" width="16.23" />
@@ -24,7 +24,7 @@
       </TableView>
       <Button fx:id="BTest" layoutX="25.0" layoutY="112.0" mnemonicParsing="false" onAction="#testFrame" prefHeight="28.0" prefWidth="122.0" text="Create test" />
       <Button fx:id="BSetAdmin" layoutX="165.0" layoutY="112.0" mnemonicParsing="false" onAction="#adminSetFrame" prefHeight="28.0" prefWidth="122.0" text="Set admin" />
-      <Button layoutX="310.0" layoutY="112.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="122.0" text="Filtration" />
+      <Button layoutX="310.0" layoutY="112.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="122.0" text="Summary Rating" />
       <Button fx:id="BDelete" layoutX="451.0" layoutY="112.0" mnemonicParsing="false" onAction="#deleteFrame" prefHeight="28.0" prefWidth="122.0" text="Delete user" />
       <Label layoutX="23.0" layoutY="32.0" text="Admin panel" textFill="WHITE">
          <font>

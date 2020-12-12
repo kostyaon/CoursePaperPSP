@@ -272,6 +272,22 @@ public class Client  {
         return success;
     }
 
+    public void createTest(Question question, Answer answer){
+        try{
+            outObj.writeObject("Test");
+            outObj.flush();
+
+            outObj.writeObject(question);
+            outObj.flush();
+
+            outObj.writeObject(answer);
+            outObj.flush();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void closeConnection(Button BClose){
         try {
             Stage stage = (Stage) BClose.getScene().getWindow();

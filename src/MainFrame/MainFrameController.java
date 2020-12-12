@@ -1,11 +1,13 @@
 package MainFrame;
 
+import AdminFrame.AdminFrameView;
 import AlertFrame.AlertFrameView;
 import Client.Client;
 import Models.Answer;
 import Models.Question;
 import Models.Rating;
 import Models.User;
+import RatingFrame.RatingFrameView;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +64,9 @@ public class MainFrameController {
     private Button BFinish;
 
     @FXML
+    private Button BRating;
+
+    @FXML
     private ProgressBar ProgressBar;
 
     @FXML
@@ -76,6 +82,52 @@ public class MainFrameController {
     private Button BClose;
 
     @FXML
+    private Button AdminClick;
+
+    @FXML
+    void openRatingFrame(ActionEvent event) throws Exception {
+        String errMSG = null;
+        try {
+            Stage ratingStage = new Stage();
+            RatingFrameView ratingFrameView = new RatingFrameView();
+            ratingFrameView.start(ratingStage);
+        }catch (Exception e){
+            errMSG = "You are not admin!";
+            e.printStackTrace();
+
+            AlertFrameView.errMSG = errMSG;
+            Stage errStage = new Stage();
+            AlertFrameView frameView = new AlertFrameView();
+            frameView.start(errStage);
+        }
+    }
+
+    @FXML
+    void openAdminWindow(ActionEvent event) throws Exception {
+        String errMSG = null;
+        try {
+
+            if (Client.getInstance().getPrivateData().getRole()) {
+                //Check if Role - admin
+                Stage adminStage = new Stage();
+                AdminFrameView adminFrameView = new AdminFrameView();
+                adminFrameView.start(adminStage);
+            }
+            else{
+                errMSG = "You are not admin!";
+                throw new Exception(errMSG);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+
+            AlertFrameView.errMSG = errMSG;
+            Stage errStage = new Stage();
+            AlertFrameView frameView = new AlertFrameView();
+            frameView.start(errStage);
+        }
+    }
+
+    @FXML
     void closeWindow(ActionEvent event) {
         //Close the connection
         Client.getInstance().closeConnection(BClose);
@@ -87,6 +139,7 @@ public class MainFrameController {
 
         TNickname.setText(Client.getInstance().getUser().getNickname());
         TRating.setText("Rating: " + df.format(Client.getInstance().getSumRate()) + "%");
+
         rating = new Rating();
 
         String[] course = {"Java", "C#", "C++", "Python"};
@@ -98,6 +151,9 @@ public class MainFrameController {
         MLevel.setItems(FXCollections.observableArrayList(level));
 
         MQuestNumber.setItems(FXCollections.observableArrayList(number));
+
+        BFinish.setVisible(false);
+        BNext.setDisable(true);
     }
 
     @FXML
@@ -111,16 +167,24 @@ public class MainFrameController {
 
         //Insert rating in DB
         String success = Client.getInstance().insertRating(rating);
-
+        //TODO: error or success
 
         //Update final rating
-        float rate = (Client.getInstance().getSumRate() + testRating)/2;
+        float rate;
+        if (Client.getInstance().getSumRate() != 0){
+            rate = (Client.getInstance().getSumRate() + testRating)/2;
+        }else{
+            rate = testRating;
+        }
+
         Client.getInstance().setSumRate(rate);
 
         //Block finish and upgrade view
         BFinish.setDisable(true);
         BStart.setDisable(false);
         TRating.setText("Rating: " + df.format(Client.getInstance().getSumRate()) + "%");
+
+        rating = new Rating();
     }
 
 
@@ -148,7 +212,7 @@ public class MainFrameController {
         testRating = 0;
         String errMSG;
         try {
-            //Get questionLis
+            //Get questionList
             String theme = (String) MCourseName.getValue();
             int level = Integer.parseInt((String) MLevel.getValue());
             int numberQuest = Integer.parseInt((String) MQuestNumber.getValue());
@@ -169,15 +233,17 @@ public class MainFrameController {
 
             BFinish.setVisible(false);
             BNext.setVisible(true);
+            BNext.setDisable(false);
             BStart.setDisable(true);
 
             //Viewing our question and answer
             viewQuestAndAnswer(TQuest, RBAnswer1, RBAnswer2, RBAnswer3, index);
         }catch (Exception e){
-            errMSG = "Hmmm! Change some option! We haven't got this type of test!";
+            errMSG = "We haven't got this type of test!";
             e.printStackTrace();
 
             //Send errMSG to the errorWindow
+            AlertFrameView.errMSG = errMSG;
             Stage loginStage = new Stage();
             AlertFrameView frameView = new AlertFrameView();
             frameView.start(loginStage);

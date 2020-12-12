@@ -7,10 +7,10 @@ import Models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 
 public class SignUpController {
 
@@ -24,7 +24,7 @@ public class SignUpController {
     private TextField TCountry;
 
     @FXML
-    private TextField TPassword;
+    private PasswordField TPassword;
 
     @FXML
     private Button BSignUp;
@@ -40,19 +40,21 @@ public class SignUpController {
 
     @FXML
     void signUp(ActionEvent event) throws Exception {
-        String errMSG;
+        String errMSG = null;
         try {
             //Throw an exceptions, if some fields is empty
             if (TNickname.getText().equals("")) {
                 errMSG = "Nickname field is empty!";
                 throw new Exception(errMSG);
             }
-            if (TPassword.getText().equals("")) {
-                errMSG = "Password is empty!";
-                throw new Exception(errMSG);
-            }
+
             if (TSpecialization.getText().equals("")) {
                 errMSG = "Specialization is empty!";
+                throw new Exception(errMSG);
+            }
+
+            if (TPassword.getText().equals("")) {
+                errMSG = "Password is empty!";
                 throw new Exception(errMSG);
             }
 
@@ -65,9 +67,13 @@ public class SignUpController {
                 stage.close();
             }
         }catch (Exception e){
-            errMSG = "Error: You are not unique! Come up with a new nickname!";
+            if(errMSG == null){
+                errMSG = "You are not unique!";
+            }
+            
 
             //Send errMSG to the errorWindow
+            AlertFrameView.errMSG = errMSG;
             Stage loginStage = new Stage();
             AlertFrameView frameView = new AlertFrameView();
             frameView.start(loginStage);

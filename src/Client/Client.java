@@ -1,14 +1,12 @@
 package Client;
 
-import Models.Answer;
-import Models.Question;
-import Models.Rating;
-import Models.User;
+import Models.*;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Client  {
@@ -16,6 +14,7 @@ public class Client  {
     private ObjectInputStream inObj;
     private ObjectOutputStream outObj;
     private User user;
+    private PrivateData privateData;
     private float sumRate;
 
     private static Client client = null;
@@ -43,6 +42,14 @@ public class Client  {
 
     public float getSumRate() {
         return sumRate;
+    }
+
+    public PrivateData getPrivateData() {
+        return privateData;
+    }
+
+    public void setPrivateData(PrivateData privateData) {
+        this.privateData = privateData;
     }
 
     public User getUser() {
@@ -182,6 +189,36 @@ public class Client  {
             e.printStackTrace();
         }
         return success;
+    }
+
+    public PrivateData getPrivateDataDB(int userId){
+        PrivateData data = null;
+        try{
+            outObj.writeObject(userId);
+            outObj.flush();
+
+            //get data
+            data = (PrivateData) inObj.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    public List<Rating> getRatingDB(int userID){
+        List<Rating> ratingList = new ArrayList<>();
+        try{
+            outObj.writeObject("Rating");
+            outObj.flush();
+
+            outObj.writeObject(userID);
+            outObj.flush();
+
+            ratingList = (List<Rating>) inObj.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ratingList;
     }
 
     public User getUserDB(String nickname){

@@ -43,26 +43,34 @@ public class AuthController {
     }
 
     @FXML
-    void signUpFrame(MouseEvent event) {
+    void signUpFrame(MouseEvent event) throws Exception {
+        String errMSG = null;
         try{
             Stage signStage = new Stage();
             SignUpView signUpView = new SignUpView();
             signUpView.start(signStage);
         }catch (Exception e){
-            System.out.println("Cannot open SignUp form! Exception: " + e.getLocalizedMessage());
+            errMSG = "Cannot open SignUp form!";
+
+            AlertFrameView.errMSG = errMSG;
+            Stage loginStage = new Stage();
+            AlertFrameView frameView = new AlertFrameView();
+            frameView.start(loginStage);
+
             e.printStackTrace();
         }
     }
 
     @FXML
     void logInFrame(ActionEvent event) throws Exception {
-        String errMSG;
+        String errMSG = null;
        //Send to the server TNickname and found the ID
         try {
             Client client = Client.getInstance();
             String access = client.auth(TNickname.getText(), TPassword.getText());
             if (access.equalsIgnoreCase("Access")){
                 client.setUser(client.getUserDB(TNickname.getText()));
+                client.setPrivateData(client.getPrivateDataDB(client.getUser().getUserID()));
 
                 //Count Summary Rating
                 float sumRating = client.countSumRate(TNickname.getText());
@@ -73,7 +81,6 @@ public class AuthController {
 
                 System.out.println("CLIENT >> SUM RATE = " + sumRating);
 
-                //Add rating to parameters
                 Stage loginStage = new Stage();
                 MainFrameView mainFrameView = new MainFrameView();
                 mainFrameView.start(loginStage);
@@ -90,9 +97,11 @@ public class AuthController {
             System.out.println("Exception: " + e.getLocalizedMessage());
 
             //Send errMSG to the errorWindow
-            Stage loginStage = new Stage();
+            AlertFrameView.errMSG = errMSG;
+            Stage errStage = new Stage();
             AlertFrameView frameView = new AlertFrameView();
-            frameView.start(loginStage);
+            frameView.start(errStage);
+
 
             e.printStackTrace();
         }

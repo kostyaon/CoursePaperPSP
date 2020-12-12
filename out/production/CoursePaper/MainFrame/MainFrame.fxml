@@ -20,7 +20,7 @@
    <children>
       <Pane layoutX="195.0" layoutY="36.0" prefHeight="97.0" prefWidth="578.0">
          <children>
-            <Label fx:id="TQuest" text="Question 1: How much do you earn?" textFill="WHITE">
+            <Label fx:id="TQuest" text="Here will be displayed your question!" textFill="WHITE">
                <font>
                   <Font size="27.0" />
                </font>
@@ -53,6 +53,12 @@
                   <Font name="Marlett" size="10.0" />
                </font>
             </Label>
+            <Button fx:id="AdminClick" layoutX="65.0" layoutY="28.0" mnemonicParsing="false" onAction="#openAdminWindow" prefHeight="60.0" prefWidth="55.0" style="-fx-background-color: #ffffff00;" textFill="#ffffff00" />
+            <Button fx:id="BRating" layoutX="61.0" layoutY="118.0" minHeight="8.0" mnemonicParsing="false" onAction="#openRatingFrame" prefHeight="22.0" prefWidth="65.0" scaleY="0.4" style="-fx-background-color: #ffffff00;">
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Button fx:id="BNext" layoutX="380.0" layoutY="430.0" mnemonicParsing="false" onAction="#nextQuestion" prefHeight="8.0" prefWidth="132.0" style="-fx-background-color: #38b98c;" text="Next" textFill="WHITE">
@@ -60,22 +66,22 @@
             <Font size="16.0" />
          </font></Button>
       <ProgressBar fx:id="ProgressBar" layoutX="177.0" layoutY="152.0" opacity="0.23" prefHeight="8.0" prefWidth="611.0" progress="0.55" />
-      <RadioButton fx:id="RBAnswer1" layoutX="244.0" layoutY="227.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="531.0" text="Starting and consistently doing or creating something " textFill="WHITE">
+      <RadioButton fx:id="RBAnswer1" layoutX="244.0" layoutY="227.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="531.0" text="Here will be the 1-st answer" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="RBAnswer2" layoutX="245.0" layoutY="287.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="531.0" text="Extracurricular outlets don’t just boost your sanity " textFill="WHITE">
+      <RadioButton fx:id="RBAnswer2" layoutX="245.0" layoutY="287.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="531.0" text="Here will be the 2-nd answer" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="RBAnswer3" layoutX="246.0" layoutY="346.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="531.0" text="You could even make money from your passion project" textFill="WHITE">
+      <RadioButton fx:id="RBAnswer3" layoutX="246.0" layoutY="346.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="531.0" text="Here will be the 3-rd answer" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </RadioButton>
-      <Button fx:id="BFinish" layoutX="380.0" layoutY="430.0" mnemonicParsing="false" onAction="#finishTest" prefHeight="8.0" prefWidth="132.0" style="-fx-background-color: #38b98c;" text="Finish" textFill="WHITE">
+      <Button fx:id="BFinish" disable="true" layoutX="380.0" layoutY="430.0" mnemonicParsing="false" onAction="#finishTest" prefHeight="8.0" prefWidth="132.0" style="-fx-background-color: #38b98c;" text="Finish" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>

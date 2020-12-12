@@ -30,7 +30,7 @@
             <Bloom threshold="0.51" />
          </effect>
       </Button>
-      <Button fx:id="BDelete" layoutX="72.0" layoutY="125.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #34af84;" text="Delete" textFill="WHITE" visible="false" />
+      <Button fx:id="BDelete" layoutX="72.0" layoutY="125.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #34af84;" text="Delete" textFill="WHITE" />
    </children>
    <effect>
       <DropShadow spread="0.3" />

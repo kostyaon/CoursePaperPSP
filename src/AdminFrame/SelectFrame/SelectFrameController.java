@@ -22,10 +22,33 @@ public class SelectFrameController {
     private TextField TUserID;
 
     @FXML
+    private void initialize(){
+        if (SelectFrameView.whatFrame){
+            BMakeAdmin.setVisible(true);
+            BDelete.setVisible(false);
+        }
+        else{
+            BMakeAdmin.setVisible(false);
+            BDelete.setVisible(true);
+        }
+    }
+
+    @FXML
     void setAdmin() throws Exception {
+        boolean setDel = true;
+        getUserID(setDel);
+    }
+
+    @FXML
+    void deleteUser() throws Exception {
+        boolean setDel = false;
+        getUserID(setDel);
+    }
+
+    void getUserID(boolean setDel) throws Exception {
         String errMSG = "Something goes wrong!";
         try{
-            String msg = Client.getInstance().setAdmin(Integer.parseInt(TUserID.getText()));
+            String msg = Client.getInstance().setOrDelete(setDel, Integer.parseInt(TUserID.getText()));
             if (msg.equalsIgnoreCase("Success")){
                 closeWindow();
             }else{
@@ -38,7 +61,6 @@ public class SelectFrameController {
             AlertFrameView frameView = new AlertFrameView();
             frameView.start(loginStage);
         }
-        
     }
 
     @FXML

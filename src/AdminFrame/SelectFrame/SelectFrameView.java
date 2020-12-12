@@ -14,6 +14,7 @@ import javafx.stage.StageStyle;
 public class SelectFrameView extends Application {
     private double xOffset;
     private double yOffset;
+    public static boolean whatFrame;//0-delete, 1-setAdmin
 
     @Override
     public void start(Stage stage) throws Exception {

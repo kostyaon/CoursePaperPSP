@@ -65,6 +65,7 @@ public class AdminFrameController {
         String errMSG;
         try {
             Stage adminStage = new Stage();
+            SelectFrameView.whatFrame = true;
             SelectFrameView selectFrameView = new SelectFrameView();
             selectFrameView.start(adminStage);
         }catch (Exception e){
@@ -84,6 +85,7 @@ public class AdminFrameController {
         String errMSG;
         try {
             Stage deleteStage = new Stage();
+            SelectFrameView.whatFrame = false;
             SelectFrameView selectFrameView = new SelectFrameView();
             selectFrameView.start(deleteStage);
         }catch (Exception e){

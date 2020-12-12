@@ -150,7 +150,6 @@ public class Client  {
     public List<Question> getQuestList(String theme, int level, int numberOfQuest){
         List<Question> questions = null;
         try{
-            //TODO: We can send all this as one object
             //Choose functionality
             outObj.writeObject("StartTest");
             outObj.flush();
@@ -248,11 +247,19 @@ public class Client  {
         return userList;
     }
 
-    public String setAdmin(int userID){
+    public String setOrDelete(boolean setDel, int userID){
         String success = null;
         try{
-            outObj.writeObject("Admin");
+            outObj.writeObject("Setdel");
             outObj.flush();
+
+            if (setDel){
+                outObj.writeObject("Set");
+                outObj.flush();
+            }else{
+                outObj.writeObject("Del");
+                outObj.flush();
+            }
 
             outObj.writeObject(userID);
             outObj.flush();

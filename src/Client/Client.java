@@ -235,6 +235,19 @@ public class Client  {
         return user;
     }
 
+    public List<User> getListUserDB(){
+        List<User> userList = null;
+        try{
+            outObj.writeObject("User list");
+            outObj.flush();
+
+            userList = (List<User>) inObj.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
     public void closeConnection(Button BClose){
         try {
             Stage stage = (Stage) BClose.getScene().getWindow();
